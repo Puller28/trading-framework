@@ -1,0 +1,130 @@
+{
+  "$schema": "https://schema.freqtrade.io/schema.json",
+  "trading_mode": "spot",
+  "margin_mode": "",
+  "max_open_trades": 5,
+  "stake_currency": "USDT",
+  "stake_amount": 20,
+  "tradable_balance_ratio": 0.99,
+  "fiat_display_currency": "USD",
+  "dry_run": true,
+  "dry_run_wallet": 1000,
+  "cancel_open_orders_on_exit": false,
+
+  "exchange": {
+    "name": "binance",
+    "sandbox": true,
+    "key": "${BINANCE_API_KEY}",
+    "secret": "${BINANCE_API_SECRET}",
+    "ccxt_config": {
+      "enableRateLimit": true
+    },
+    "ccxt_async_config": {},
+    "pair_whitelist": [
+      "XRP/USDT",
+      "LDO/USDT",
+      "WLD/USDT",
+      "BCH/USDT",
+      "BTC/USDT",
+      "ETH/USDT"
+    ],
+    "pair_blacklist": [
+      "BNB/.*"
+    ]
+  },
+
+  "entry_pricing": {
+    "price_side": "same",
+    "use_order_book": true,
+    "order_book_top": 1,
+    "price_last_balance": 0.0,
+    "check_depth_of_market": {
+      "enabled": false,
+      "bids_to_ask_delta": 1
+    }
+  },
+
+  "exit_pricing": {
+    "price_side": "same",
+    "use_order_book": true,
+    "order_book_top": 1
+  },
+
+  "order_types": {
+    "entry": "limit",
+    "exit": "limit",
+    "stoploss": "market",
+    "stoploss_on_exchange": false
+  },
+
+  "order_time_in_force": {
+    "entry": "GTC",
+    "exit": "GTC"
+  },
+
+  "stoploss": -0.10,
+  "trailing_stop": false,
+
+  "minimal_roi": {
+    "0": 0.10,
+    "30": 0.05,
+    "60": 0.02
+  },
+
+  "timeframe": "5m",
+
+  "strategy": "Strategy01",
+
+  "internals": {
+    "process_throttle_secs": 5
+  },
+
+  "bot_name": "TradingFramework",
+  "initial_state": "running",
+
+  "api_server": {
+    "enabled": true,
+    "listen_ip_address": "0.0.0.0",
+    "listen_port": 8080,
+    "verbosity": "error",
+    "enable_openapi": false,
+    "jwt_secret_key": "${FREQTRADE_JWT_SECRET}",
+    "CORS_origins": [],
+    "username": "${FREQTRADE_API_USER}",
+    "password": "${FREQTRADE_API_PASS}"
+  },
+
+  "telegram": {
+    "enabled": false,
+    "token": "${TELEGRAM_TOKEN}",
+    "chat_id": "${TELEGRAM_CHAT_ID}",
+    "notification_settings": {
+      "status": "silent",
+      "warning": "on",
+      "startup": "on",
+      "entry": "silent",
+      "entry_fill": "on",
+      "exit": {
+        "roi": "silent",
+        "emergency_exit": "on",
+        "force_exit": "on",
+        "exit_signal": "silent",
+        "trailing_stop_loss": "on",
+        "stop_loss": "on",
+        "stoploss_on_exchange": "on",
+        "custom_exit": "silent",
+        "partial_exit": "on"
+      },
+      "exit_fill": "on",
+      "protection_trigger": "off",
+      "protection_trigger_global": "on",
+      "strategy_msg": "off",
+      "show_candle": "off"
+    },
+    "reload": true,
+    "balance_dust_level": 0.01
+  },
+
+  "dataformat_ohlcv": "json",
+  "dataformat_trades": "jsongz"
+}
