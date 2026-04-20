@@ -12,10 +12,10 @@
   "cancel_open_orders_on_exit": false,
 
   "exchange": {
-    "name": "binance",
+    "name": "bybit",
     "sandbox": true,
-    "key": "${BINANCE_API_KEY}",
-    "secret": "${BINANCE_API_SECRET}",
+    "key": "${BYBIT_API_KEY}",
+    "secret": "${BYBIT_API_SECRET}",
     "ccxt_config": {
       "enableRateLimit": true
     },
